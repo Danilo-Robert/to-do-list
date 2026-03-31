@@ -1,6 +1,6 @@
 <template>
   <v-text-field
-      label="Add Task"
+      label="Adicionar tarefa"
       v-model="task.title"
       @keyup.enter="addTask"
     ></v-text-field>

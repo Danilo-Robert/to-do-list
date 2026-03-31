@@ -32,7 +32,7 @@
     <v-app-bar>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-app-bar-title>To do List</v-app-bar-title>
+      <v-app-bar-title>Lista de Tarefas</v-app-bar-title>
     </v-app-bar>
 
     <v-main>
@@ -47,8 +47,8 @@ import { ref } from "vue";
 const drawer = ref(null);
 
 const items = [
-  { text: "Home", icon: "mdi-folder", to: "/" },
-  { text: "About", icon: "mdi-account-multiple", to: "/about" },
+  { text: "Inicio", icon: "mdi-folder", to: "/" },
+  { text: "Sobre", icon: "mdi-account-multiple", to: "/about" },
 ];
 </script>
 

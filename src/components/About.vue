@@ -1,5 +1,5 @@
 <template>
-    <h1>About Us</h1>
+    <h1>Curioso!</h1>
 </template>
 
 <script setup>
