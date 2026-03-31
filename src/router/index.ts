@@ -17,8 +17,8 @@ const router = createRouter({
       children: [
         {
           path: '',
-          name: 'HelloWorld',
-          component: () => import('@/components/HelloWorld.vue'),
+          name: 'ListTasks',
+          component: () => import('@/components/ListTasks.vue'),
         },
       ],
     },
