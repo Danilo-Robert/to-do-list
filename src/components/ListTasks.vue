@@ -1,18 +1,13 @@
 <template>
   <div>
 
-    <v-text-field 
-    label="Add Task"
-    v-model="task.title"
-    @keyup.enter="addTask"></v-text-field>
-    
     <v-list
       v-model:selected="settingsSelection"
       lines="three"
       select-strategy="leaf"
     >
       <v-list-item
-        v-for="task, index in tasks"
+        v-for="(task, index) in props.tasks"
         :key="index"
         :subtitle="task.description"
         :title="task.title"
@@ -26,35 +21,40 @@
             ></v-checkbox-btn>
           </v-list-item-action>
         </template>
+
+        <template v-slot:append>
+          <v-menu>
+            <template v-slot:activator="{ props }">
+              <v-btn
+                color="grey-lighten"
+                icon="mdi-dots-vertical"
+                variant="text"
+                v-bind="props"></v-btn>
+            </template>
+            <v-list>
+              <v-list-item :key="index" :value="index">
+                <v-list-item-title>Editar</v-list-item-title>
+              </v-list-item>
+
+              <v-list-item :key="index" :value="index">
+                <v-list-item-title>Deletar</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </template>
       </v-list-item>
     </v-list>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { defineProps } from 'vue';
+import { ref } from "vue";
 
-    const tasks = ref ([
-    { title: "Week 1", description: "Game out vs @Broncos" },
-    { title: "Week 2", description: "Practice" },
+const props = defineProps({
+  tasks: Object
+});
 
-  ]);
+const settingsSelection = ref([]);
 
-    const settingsSelection = ref([])
-
-    const task = ref({
-        title: "",
-        description: ""
-    });
-
-    const addTask = () => {
-      tasks.value.push({
-        title: task.value.title,
-        description: task.value.description
-      })
-        task.value = {
-            title: "",
-            description: ""
-        }
-    }
 </script>

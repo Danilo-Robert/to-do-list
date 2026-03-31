@@ -17,8 +17,8 @@ const router = createRouter({
       children: [
         {
           path: '',
-          name: 'ListTasks',
-          component: () => import('@/components/ListTasks.vue'),
+          name: 'ToDoList',
+          component: () => import('@/components/ToDoList.vue'),
         },
       ],
     },
