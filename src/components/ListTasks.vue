@@ -33,7 +33,7 @@
             </template>
             <v-list>
               <v-list-item :key="index" :value="index">
-                <v-list-item-title @click="toogle(index)">Editar</v-list-item-title>
+                <v-list-item-title @click="toogleEdit(index)">Editar</v-list-item-title>
               </v-list-item>
 
               <v-list-item :key="index" :value="index">
@@ -46,14 +46,16 @@
     </v-list>
     <DialogTaskField :dialog="showDialogTaskField"
     :task="tasks[indexTaskSelected]"
-    @toogle="toogle"/>
+    @toogle="toogleEdit"/>
+    <DialogDelete
+    :dialog="showDialogDelete"/>
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
-import { ref } from "vue";
+import { ref, defineProps } from 'vue';
 import DialogTaskField from './DialogTaskField.vue';
+import DialogDelete from './DialogDelete.vue';
 
 const props = defineProps({
   tasks: Object
@@ -65,8 +67,16 @@ const indexTaskSelected = ref(0);
 
 const showDialogTaskField = ref(false);
 
-const toogle = (index) => {
+const toogleEdit = (index) => {
   showDialogTaskField.value = !showDialogTaskField.value;
+  if(index != null)
+    indexTaskSelected.value = index;
+}
+
+const showDialogDelete = ref(false);
+
+const toogleDelete = (index) => {
+  showDialogDelete.value = !showDialogDelete.value;
   if(index != null)
     indexTaskSelected.value = index;
 }
