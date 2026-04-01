@@ -12,7 +12,7 @@
         <template v-slot:actions>
           <v-spacer></v-spacer>
 
-          <v-btn @click="$emit('toogle')"> Cancelar </v-btn>
+          <v-btn @click="taskStore.toogleEdit()"> Cancelar </v-btn>
 
           <v-btn @click="taskStore.toogleEdit()"> Ok </v-btn>
         </template>
