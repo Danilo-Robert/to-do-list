@@ -2,10 +2,7 @@ import { defineStore } from 'pinia'
 
 export const useTaskStore = defineStore('task', {
     state: () => ({
-        tasks: [
-            { title: "Week 1", description: "Game out vs @Broncos" },
-            { title: "Week 2", description: "Practice" },
-        ],
+        tasks: [ ],
         titleTaskCreating: "",
         showDialogDelete: false,
         indexTaskSelected: 0,
@@ -37,6 +34,11 @@ export const useTaskStore = defineStore('task', {
         saveLocalData() {
             localStorage.setItem('tasks', 
                 JSON.stringify(this.tasks))
+        },
+        getTasks() {
+            let items = localStorage.getItem('tasks')
+            if (items)
+                this.tasks = JSON.parse(items);
         }
     }
 })
