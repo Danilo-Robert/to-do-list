@@ -20,7 +20,7 @@
           <v-btn 
           variant="elevated"
           color="green-darken-1"
-          @click="taskStore.toogleEdit()"> Ok </v-btn>
+          @click="taskStore.updateTask()"> Ok </v-btn>
         </template>
       </v-card>
     </v-dialog>
@@ -29,7 +29,7 @@
 
 <script setup>
 import { defineProps } from "vue";
-import { useTaskStore } from '../stores/task';
+import { useTaskStore } from '../../stores/task';
 
 const taskStore = useTaskStore();
 const props = defineProps({

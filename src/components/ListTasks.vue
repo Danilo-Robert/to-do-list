@@ -53,8 +53,8 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import DialogTaskField from "./DialogTaskField.vue";
-import DialogDelete from "./DialogDelete.vue";
+import DialogTaskField from "./dialogs/DialogTaskField.vue";
+import DialogDelete from "./dialogs/DialogDelete.vue";
 import { useTaskStore } from '../stores/task';
 
 const settingsSelection = ref<number[]>([]);

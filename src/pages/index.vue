@@ -7,8 +7,8 @@
 
 <script lang="ts" setup>
 import View from './view.vue';
-import Alert from '../components/Alert.vue';
-import { useAlertStore } from '../stores/alert.ts';
+import Alert from '../components/shared/Alert.vue';
+import { useAlertStore } from '../stores/alert';
 
 const alertStore = useAlertStore();
 </script> 

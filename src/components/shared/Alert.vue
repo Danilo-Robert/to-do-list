@@ -1,9 +1,9 @@
 <template>
   <div class="alert-notification">
     <v-alert
-      text="Tarefa adicionada com sucesso!"
+      :text="alertStore.text"
       class="animate__animated animate__shakeX"
-      type="success"
+      :type="alertStore.type"
       closable
     ></v-alert>
   </div>
@@ -11,7 +11,9 @@
 
 <script setup>
 import 'animate.css';
+import { useAlertStore } from '../../stores/alert'; 
 
+const alertStore = useAlertStore();
 </script>
 
 <style scoped>

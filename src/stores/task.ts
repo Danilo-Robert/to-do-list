@@ -21,12 +21,17 @@ export const useTaskStore = defineStore('task', {
             });
             this.titleTaskCreating = "";
             this.saveLocalData();
-            alertStore.notifyAlert();
+            alertStore.notifyAlertCreated();
         },
         toogleEdit(index) {
             this.showDialogTaskField = !this.showDialogTaskField;
             if (index != null) this.indexTaskSelected = index;
             this.saveLocalData();
+        },
+        updateTask() {
+            this.saveLocalData();
+            this.toogleEdit();
+            alertStore.notifyAlertUpdated();
         },
         toogleDelete(index) {
             this.showDialogDelete = !this.showDialogDelete;
@@ -36,6 +41,7 @@ export const useTaskStore = defineStore('task', {
             this.tasks.splice(this.indexTaskSelected, 1)
             this.toogleDelete();
             this.saveLocalData();
+            alertStore.notifyAlertDeleted();
         },
         saveLocalData() {
             localStorage.setItem('tasks', 
