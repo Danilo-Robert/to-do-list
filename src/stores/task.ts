@@ -1,4 +1,7 @@
 import { defineStore } from 'pinia'
+import { useAlertStore } from './alert.ts';
+
+const alertStore = useAlertStore();
 
 export const useTaskStore = defineStore('task', {
     state: () => ({
@@ -10,12 +13,14 @@ export const useTaskStore = defineStore('task', {
     }),
     actions: {
         addTask() {
+            if(this.titleTaskCreating.length <= 4) return;
             this.tasks.push({
                 title: this.titleTaskCreating,
                 description: "Description",
             });
             this.titleTaskCreating = "";
             this.saveLocalData();
+            alertStore.notifyAlert();
         },
         toogleEdit(index) {
             this.showDialogTaskField = !this.showDialogTaskField;
