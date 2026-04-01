@@ -11,12 +11,12 @@
         :subtitle="task.description"
         :title="task.title"
         :value="index"
+        @click="taskStore.toogleDoneTask(index)"
       >
-        <template v-slot:prepend="{ isSelected, select }">
+        <template v-slot:prepend="{ }">
           <v-list-item-action start>
             <v-checkbox-btn
-              :model-value="isSelected"
-              @update:model-value="select"
+              :model-value="task.done"
             ></v-checkbox-btn>
           </v-list-item-action>
         </template>
@@ -52,9 +52,11 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import DialogTaskField from "./DialogTaskField.vue";
 import DialogDelete from "./DialogDelete.vue";
 import { useTaskStore } from '../stores/task';
 
+const settingsSelection = ref<number[]>([]);
 const taskStore = useTaskStore();
 </script>
