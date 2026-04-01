@@ -12,9 +12,15 @@
         <template v-slot:actions>
           <v-spacer></v-spacer>
 
-          <v-btn @click="taskStore.toogleEdit()"> Cancelar </v-btn>
+          <v-btn 
+          variant="outlined"
+          color="red-darken-1"
+          @click="taskStore.toogleEdit()"> Cancelar </v-btn>
 
-          <v-btn @click="taskStore.toogleEdit()"> Ok </v-btn>
+          <v-btn 
+          variant="elevated"
+          color="green-darken-1"
+          @click="taskStore.toogleEdit()"> Ok </v-btn>
         </template>
       </v-card>
     </v-dialog>
