@@ -6,7 +6,7 @@
       select-strategy="leaf"
     >
       <v-list-item
-        v-for="(task, index) in props.tasks"
+        v-for="(task, index) in taskStore.tasks"
         :key="index"
         :subtitle="task.description"
         :title="task.title"
@@ -32,11 +32,11 @@
               ></v-btn>
             </template>
             <v-list>
-              <v-list-item :value="1" @click="toogleEdit(index)">
+              <v-list-item :value="1" @click="taskStore.toogleEdit(index)">
                 <v-list-item-title>Editar</v-list-item-title>
               </v-list-item>
 
-              <v-list-item @click="toogleDelete(index)" :value="2">
+              <v-list-item @click="taskStore.toogleDelete(index)" :value="2">
                 <v-list-item-title>Deletar</v-list-item-title>
               </v-list-item>
             </v-list>
@@ -45,47 +45,16 @@
       </v-list-item>
     </v-list>
     <DialogTaskField
-      :dialog="showDialogTaskField"
-      :task="tasks[indexTaskSelected]"
-      @toogle="toogleEdit"
+      :task="taskStore.tasks[taskStore.indexTaskSelected]"
     />
-    <DialogDelete 
-    :dialog="showDialogDelete"
-    @toogleDelete="toogleDelete"
-    @deleteTask="deleteTask"
-    />
+    <DialogDelete/>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps } from "vue";
 import DialogTaskField from "./DialogTaskField.vue";
 import DialogDelete from "./DialogDelete.vue";
+import { useTaskStore } from '../stores/task';
 
-const props = defineProps({
-  tasks: Object,
-});
-
-const settingsSelection = ref([]);
-
-const indexTaskSelected = ref(0);
-
-const showDialogTaskField = ref(false);
-
-const toogleEdit = (index) => {
-  showDialogTaskField.value = !showDialogTaskField.value;
-  if (index != null) indexTaskSelected.value = index;
-};
-
-const showDialogDelete = ref(false);
-
-const toogleDelete = (index) => {
-  showDialogDelete.value = !showDialogDelete.value;
-  if (index != null) indexTaskSelected.value = index;
-};
-
-const deleteTask = () => {
-  props.tasks.splice(indexTaskSelected.value, 1);
-  toogleDelete();
-}
+const taskStore = useTaskStore();
 </script>

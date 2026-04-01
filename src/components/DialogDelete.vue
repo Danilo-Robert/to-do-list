@@ -1,6 +1,6 @@
 <template>
   <div class="text-center pa-4">
-    <v-dialog v-model="props.dialog" max-width="400" persistent>
+    <v-dialog v-model="taskStore.showDialogDelete" max-width="400" persistent>
       <v-card
         prepend-icon="mdi-map-marker"
         text="Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
@@ -12,12 +12,12 @@
           <v-btn 
           color="red"
           variant="text"
-          @click="$emit('toogleDelete')"> No </v-btn>
+          @click="taskStore.toogleDelete"> No </v-btn>
 
           <v-btn 
           variant="text"
           color="green-darken-1"
-          @click="$emit('deleteTask')"> Yes </v-btn>
+          @click="taskStore.deleteTask"> Yes </v-btn>
         </template>
       </v-card>
     </v-dialog>
@@ -25,9 +25,7 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
+import { useTaskStore } from '../stores/task';
 
-const props = defineProps({
-  dialog: Boolean,
-});
+const taskStore = useTaskStore();
 </script>
